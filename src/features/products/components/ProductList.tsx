@@ -19,7 +19,7 @@ const ProductList = () => {
     dispatch(
       fetchProducts({
         page: page,
-        limit: 8,
+        limit: 12,
         sort: "name",
         order: "asc",
         category: category,

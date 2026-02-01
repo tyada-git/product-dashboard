@@ -5,5 +5,7 @@ const ProductContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
+  max-width: 998px;
+  float: right;
 `;
 export default ProductContainer;

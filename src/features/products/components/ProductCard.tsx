@@ -36,7 +36,7 @@ const Content = styled.div`
 
 const Title = styled.h3`
   margin: 0 0 8px 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #333;
 `;
 
@@ -46,13 +46,20 @@ const Price = styled.span`
 `;
 const Category = styled.span`
   font-weight: bold;
-  color: #aaadb1;
+  color: #989a9d;
+  font-size: 12px;
+  margin-bottom: 15px;
 `;
 const Stock = styled.span<{ stock: boolean }>`
-  display: inline-block;
+  display: block;
   margin-left: 8px;
   color: ${({ stock }) => (stock ? "green" : "red")};
+  background-color: ${({ stock }) => (stock ? "#ccf6cb" : "#96a46f")};
+  padding: 5px;
   font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 15px;
+  float: right;
 `;
 
 const Description = styled.p`

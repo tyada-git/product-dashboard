@@ -5,9 +5,34 @@ import type { AppDispatch, RootState } from "../../../store";
 import ProductCard from "./ProductCard";
 import Button from "../../../sharedComponents/Button";
 import ProductContainer from "./ProductContainer";
+import styled from "styled-components";
+import { SelectBox } from "../../../sharedComponents/SelectBox";
+
+export const PageWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 24px;
+  padding: 24px;
+  background: #f8fafc;
+`;
+
+export const Sidebar = styled.aside`
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  height: fit-content;
+`;
+
+export const Content = styled.main`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const ProductList = () => {
   const [category, setCategory] = useState("");
+  const [sortedValue, setSortedValue] = useState("");
+  const [orderVal, setOrderVal] = useState("asc");
   const [page, setPage] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
   const { items, loading, error } = useSelector(
@@ -20,16 +45,32 @@ const ProductList = () => {
       fetchProducts({
         page: page,
         limit: 12,
-        sort: "name",
-        order: "asc",
+        sort: sortedValue,
+        order: orderVal,
         category: category,
         inStock: true,
       }),
     );
-  }, [dispatch, category, page]);
+  }, [dispatch, category, page, sortedValue, orderVal]);
 
   const handleCategory = (selectedCategory: string) => {
     setCategory(selectedCategory);
+    setPage(1);
+  };
+
+  const handleSort = (sortedVal: string) => {
+    if (
+      sortedVal === "price_asc" ||
+      sortedVal === "popularity_asc" ||
+      sortedVal === "newest"
+    ) {
+      setOrderVal("asc");
+      setSortedValue(sortedVal);
+    } else {
+      setOrderVal("desc");
+      setSortedValue(sortedVal);
+    }
+    setPage(1);
   };
   const nextPage = () => {
     setPage((prev) => prev + 1);
@@ -37,7 +78,7 @@ const ProductList = () => {
   const prevPage = () => {
     setPage((prev) => prev - 1);
   };
-  //   if (loading) return <p>Loading...</p>;
+
   if (error) return <p>{error}</p>;
 
   return (
@@ -45,23 +86,53 @@ const ProductList = () => {
       {loading ? (
         <p>Loading</p>
       ) : (
-        <>
-          <select onChange={(e) => handleCategory(e.target.value)}>
-            <option>select a category </option>
-            <option>accessories</option>
-            <option>electronics</option>
-            <option>furniture</option>
-            <option>home</option>
-          </select>
-          <ProductContainer>
-            {items.map((item) => {
-              return <ProductCard product={item} />;
-            })}
-          </ProductContainer>
-          <Button onClick={prevPage}> prev</Button>
-          {page}
-          <Button onClick={nextPage}>next</Button>
-        </>
+        <PageWrapper>
+          <Sidebar>
+            {/* <input placeholder="Search product..." /> */}
+            <div>
+              <label>Category</label>
+              <SelectBox
+                value={category}
+                onChange={(e) => handleCategory(e.target.value)}
+              >
+                <option value="">Select a category</option>
+                <option value="accessories">Accessories</option>
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <option value="home">Home</option>
+              </SelectBox>
+            </div>
+            <label>Sort By</label>
+            <SelectBox
+              value={sortedValue}
+              onChange={(e) => handleSort(e.target.value)}
+            >
+              <option value="newest">Newest</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low </option>
+              <option value="popularity_asc">Popularity Low to High</option>
+              <option value="popularity_desc">Popularity High to Low</option>
+            </SelectBox>
+
+            <label>
+              <input type="checkbox" />
+              In Stock Only
+            </label>
+          </Sidebar>
+
+          <Content>
+            <ProductContainer>
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </ProductContainer>
+            <div>
+              <Button onClick={prevPage}> prev</Button>
+              {page}
+              <Button onClick={nextPage}>next</Button>
+            </div>
+          </Content>
+        </PageWrapper>
       )}
     </>
   );

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  margin-top: 12px;
   padding: 10px 12px;
   border: none;
   background-color: #e7e8e9;
@@ -9,6 +8,7 @@ const Button = styled.button`
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
+  width: 110px;
 
   &:hover {
     background-color: #8e8f91;

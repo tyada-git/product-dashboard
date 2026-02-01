@@ -1,5 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+export interface Specification {
+  label: string;
+  value: string;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -10,6 +15,12 @@ export interface Product {
   stock: number;
   popularity: number;
   createdAt: string;
+  fullDescription: string;
+  specifications: Specification[];
+  reviews: object;
+  lastStockUpdate: string;
+  relatedProducts: Array<number>;
+  images: Array<string>;
 }
 
 interface FetchProductsParams {

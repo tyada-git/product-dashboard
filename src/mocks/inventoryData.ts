@@ -1,0 +1,110 @@
+const inventoryMock = {
+  data: [
+    {
+      id: 1,
+      name: "Wireless Headphones",
+      category: "electronics",
+      currentStock: 45,
+      reorderLevel: 20,
+      lastUpdated: "2025-11-20T14:22:00Z",
+    },
+    {
+      id: 4,
+      name: "Laptop Backpack",
+      category: "accessories",
+      currentStock: 120,
+      reorderLevel: 40,
+      lastUpdated: "2025-10-20T14:22:00Z",
+    },
+    {
+      id: 3,
+      name: "Bluetooth Speaker",
+      category: "electronics",
+      currentStock: 60,
+      reorderLevel: 25,
+      lastUpdated: "2025-06-20T14:22:00Z",
+    },
+    {
+      id: 5,
+      name: "Mechanical Keyboard",
+      category: "electronics",
+      currentStock: 25,
+      reorderLevel: 15,
+      lastUpdated: "2025-01-25T14:45:00Z",
+    },
+    {
+      id: 6,
+      name: "Wireless Mouse",
+      category: "electronics",
+      currentStock: 80,
+      reorderLevel: 30,
+      lastUpdated: "2025-01-27T11:10:00Z",
+    },
+    {
+      id: 7,
+      name: "USB-C Hub",
+      category: "electronics",
+      currentStock: 40,
+      reorderLevel: 20,
+      lastUpdated: "2025-01-29T16:30:00Z",
+    },
+    {
+      id: 8,
+      name: "Noise Cancelling Earbuds",
+      category: "electronics",
+      currentStock: 55,
+      reorderLevel: 25,
+      lastUpdated: "2025-09-01T10:00:00Z",
+    },
+    {
+      id: 9,
+      name: "Office Chair",
+      category: "furniture",
+      currentStock: 18,
+      reorderLevel: 20, // low stock
+      lastUpdated: "2025-09-03T13:40:00Z",
+    },
+    {
+      id: 10,
+      name: "Desk Lamp",
+      category: "home",
+      currentStock: 70,
+      reorderLevel: 30,
+      lastUpdated: "2025-09-05T09:25:00Z",
+    },
+    {
+      id: 11,
+      name: "Portable SSD 1TB",
+      category: "electronics",
+      currentStock: 35,
+      reorderLevel: 20,
+      lastUpdated: "2025-09-07T15:10:00Z",
+    },
+    {
+      id: 12,
+      name: "Gaming Monitor",
+      category: "electronics",
+      currentStock: 5,
+      reorderLevel: 25, // low stock
+      lastUpdated: "2025-09-10T11:55:00Z",
+    },
+    {
+      id: 13,
+      name: "Table",
+      category: "furniture",
+      currentStock: 2,
+      reorderLevel: 10, // very low stock
+      lastUpdated: "2025-09-10T11:55:00Z",
+    },
+    {
+      id: 23,
+      name: "Sofa",
+      category: "furniture",
+      currentStock: 70,
+      reorderLevel: 30,
+      lastUpdated: "2026-01-20T14:22:00Z",
+    },
+  ],
+};
+
+export default inventoryMock;

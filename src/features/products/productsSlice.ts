@@ -35,10 +35,6 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    clearSelectedProduct: (state) => {
-      state.selectedProduct = null;
-      state.detailsError = null;
-    },
   },
   extraReducers: (builder) => {
     builder

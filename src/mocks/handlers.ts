@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import productsMock from "./productData";
+import inventoryMock from "./inventoryData";
 
 export const handlers = [
   rest.get("/api/products", (req, res, ctx) => {
@@ -52,7 +53,7 @@ export const handlers = [
 
     return res(
       ctx.status(200),
-      ctx.delay(300),
+      ctx.delay(600),
       ctx.json({
         data: paginatedData,
         total,
@@ -70,5 +71,30 @@ export const handlers = [
     // I was returning object and thats was causing issue in details page -
     // console.log(selectedProduct);
     return res(ctx.status(200), ctx.delay(200), ctx.json(selectedProduct));
+  }),
+
+  rest.get("/api/inventory", (req, res, ctx) => {
+    const category = req.url.searchParams.get("category") || "";
+    const lowStockThreshold = Number(
+      req.url.searchParams.get("lowStockThreshold") ?? 0,
+    );
+
+    let filteredInventory = [...inventoryMock.data];
+
+    if (category) {
+      filteredInventory = filteredInventory.filter(
+        (i) => i.category === category,
+      );
+    }
+    if (lowStockThreshold) {
+      filteredInventory = filteredInventory.filter(
+        (i) => i.currentStock <= lowStockThreshold,
+      );
+    }
+    return res(
+      ctx.status(200),
+      ctx.delay(200),
+      ctx.json({ data: filteredInventory }),
+    );
   }),
 ];

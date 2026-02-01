@@ -7,6 +7,7 @@ import Button from "../../../sharedComponents/Button";
 import ProductContainer from "./ProductContainer";
 import styled from "styled-components";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
+import Loader from "../../../sharedComponents/Loader";
 
 export const PageWrapper = styled.div`
   display: grid;
@@ -84,7 +85,7 @@ const ProductList = () => {
   return (
     <>
       {loading ? (
-        <p>Loading</p>
+        <Loader label="Loading products..." />
       ) : (
         <PageWrapper>
           <Sidebar>

@@ -4,12 +4,31 @@ const productsMock = {
       id: 1,
       name: "Wireless Headphones",
       description: "High-quality noise-cancelling headphones",
+      fullDescription:
+        "70-Hour Playtime: Stay connected without worrying about battery life in endless meetings or audio sessions.Dual Device Pairing: Seamlessly switch between phone and laptop for work and play.40mm Driver: Experience concert-like audio clarity with every beat and bass drop.Charge quickly and enjoy hours of playtime with ease.",
       price: 199.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "public/wireless_headphones.jpg",
       stock: 45,
       popularity: 95,
       createdAt: "2024-01-15T10:30:00Z",
+      images: [
+        "public/img-wireless1.jpg",
+        "public/img-wireless2.jpg",
+        "public/img-wireless2.jpg",
+      ],
+      specifications: {
+        color: "Calm Beige",
+        Brand: "Noise",
+        batteryLife: "30 hours",
+        connectivity: "Bluetooth 5.0",
+      },
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 2,

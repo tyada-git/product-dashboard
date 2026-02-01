@@ -62,17 +62,13 @@ export const handlers = [
     );
   }),
 
-  rest.get("/api/product/:id", (req, res, ctx) => {
-    const id = Number(req.url.searchParams.get("id") ?? 1);
+  rest.get("/api/products/:id", (req, res, ctx) => {
+    const id = Number(req.params.id);
 
     const selectedProduct = productsMock.data.find((p) => p.id === id);
-
-    return res(
-      ctx.status(200),
-      ctx.delay(200),
-      ctx.json({
-        selectedProduct,
-      }),
-    );
+    // console.log("msw-------");
+    // I was returning object and thats was causing issue in details page -
+    // console.log(selectedProduct);
+    return res(ctx.status(200), ctx.delay(200), ctx.json(selectedProduct));
   }),
 ];

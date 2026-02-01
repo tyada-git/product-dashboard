@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProducts, type Product } from "./productsThunks";
+import {
+  fetchProductById,
+  fetchProducts,
+  type Product,
+} from "./productsThunks";
 
 interface ProductsState {
   items: Product[];
@@ -8,6 +12,10 @@ interface ProductsState {
   limit: number;
   loading: boolean;
   error: string | null;
+
+  selectedProduct: Product | null;
+  detailsLoading: boolean;
+  detailsError: string | null;
 }
 
 const initialState: ProductsState = {
@@ -17,12 +25,21 @@ const initialState: ProductsState = {
   limit: 12,
   loading: false,
   error: null,
+
+  selectedProduct: null,
+  detailsLoading: false,
+  detailsError: null,
 };
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    clearSelectedProduct: (state) => {
+      state.selectedProduct = null;
+      state.detailsError = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -39,6 +56,20 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "unknowm error";
+      });
+
+    builder
+      .addCase(fetchProductById.pending, (state) => {
+        state.detailsLoading = true;
+        state.detailsError = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.detailsLoading = false;
+        state.selectedProduct = action.payload;
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.detailsLoading = false;
+        state.detailsError = action.payload ?? "unknown error";
       });
   },
 });

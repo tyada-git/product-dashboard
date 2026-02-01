@@ -6,6 +6,7 @@ import { timeAgoForStock } from "../../../helper";
 import styled from "styled-components";
 import Loader from "../../../sharedComponents/Loader";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
+import Button from "../../../sharedComponents/Button";
 
 const Table = styled.table`
   width: 100%;
@@ -13,7 +14,6 @@ const Table = styled.table`
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
-  margin: 40px;
 `;
 
 const Thead = styled.thead`
@@ -54,6 +54,18 @@ const LowStock = styled.span`
   color: #dc2626;
   font-weight: 700;
 `;
+
+const InventoryWrapper = styled.div`
+  display: flex;
+`;
+
+export const Sidebar = styled.aside`
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  height: fit-content;
+`;
+
 const InventoryList = () => {
   const [category, setCategory] = useState("");
   const [lowStock, setLowStock] = useState(0);
@@ -85,8 +97,8 @@ const InventoryList = () => {
       {loading ? (
         <Loader label="Loading products..." />
       ) : (
-        <>
-          <div>
+        <InventoryWrapper>
+          <Sidebar>
             <label>Category</label>
             <SelectBox
               value={category}
@@ -108,7 +120,7 @@ const InventoryList = () => {
               <option value={10}>≤ 10</option>
               <option value={20}>≤ 20</option>
             </SelectBox>
-          </div>
+          </Sidebar>
           <Table>
             <Thead>
               <tr>
@@ -117,6 +129,7 @@ const InventoryList = () => {
                 <Th>Current Stock</Th>
                 <Th>Reorder Level</Th>
                 <Th>Last Updated</Th>
+                <Th>Stock Update</Th>
               </tr>
             </Thead>
 
@@ -143,12 +156,15 @@ const InventoryList = () => {
                     <Td>{item.reorderLevel}</Td>
 
                     <Td>{timeAgoForStock(item.lastUpdated)}</Td>
+                    <Td>
+                      <Button>Update</Button>
+                    </Td>
                   </Tr>
                 );
               })}
             </tbody>
           </Table>
-        </>
+        </InventoryWrapper>
       )}
     </>
   );

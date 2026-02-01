@@ -1,8 +1,8 @@
 import type { Product } from "../productsThunks";
 import React from "react";
 import styled from "styled-components";
-import Button from "../../../sharedComponents/Button";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../../sharedComponents/Button";
 
 interface CardProps {
   product: Product;
@@ -55,7 +55,7 @@ const Stock = styled.span<{ stock: boolean }>`
   display: block;
   margin-left: 8px;
   color: ${({ stock }) => (stock ? "green" : "red")};
-  background-color: ${({ stock }) => (stock ? "#ccf6cb" : "#96a46f")};
+  background-color: ${({ stock }) => (stock ? "#ccf6cb" : "#e9f6c6")};
   padding: 5px;
   font-weight: 500;
   font-size: 12px;
@@ -84,7 +84,10 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <Title>{product.name}</Title>
         <Price>${product.price.toFixed(2)}</Price>
         <Description></Description>
-        <Button onClick={() => navigate(`/products/${product.id}`)}>
+        <Button
+          variant="primary"
+          onClick={() => navigate(`/products/${product.id}`)}
+        >
           View Details
         </Button>
       </Content>

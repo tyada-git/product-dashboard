@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
-const Button = styled.button`
-  padding: 10px 12px;
-  border: none;
-  background-color: #e7e8e9;
-  color: #1d1c1c;
-  background: #2563eb;
-  color: white;
+export const Button = styled.button<{ variant?: "primary" | "secondary" }>`
+  padding: 8px 14px;
   border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
-  font-size: 0.9rem;
-  width: 110px;
 
-  &:hover {
-    background-color: #4f80eb;
-    color: #feffff;
+  border: none;
+
+  background: ${({ variant }) =>
+    variant === "primary" ? "#2563eb" : "#e5e7eb"};
+
+  color: ${({ variant }) => (variant === "primary" ? "#fff" : "#111")};
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `;
-export default Button;

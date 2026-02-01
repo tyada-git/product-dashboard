@@ -130,6 +130,23 @@ const productsMock = {
       stock: 25,
       popularity: 92,
       createdAt: "2024-01-25T14:45:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 6,
@@ -138,9 +155,26 @@ const productsMock = {
       price: 29.99,
       category: "electronics",
       image: "https://dummyimage.com/300x300/cbd5d6/fff",
-      stock: 80,
+      stock: 0,
       popularity: 85,
       createdAt: "2024-01-27T11:10:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 7,
@@ -148,10 +182,27 @@ const productsMock = {
       description: "Multi-port USB-C hub with HDMI",
       price: 59.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/SSD.jpg",
       stock: 40,
       popularity: 87,
       createdAt: "2024-01-29T16:30:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 8,
@@ -159,10 +210,27 @@ const productsMock = {
       description: "True wireless earbuds with ANC",
       price: 99.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/ear.jpg",
       stock: 55,
       popularity: 91,
       createdAt: "2024-02-01T10:00:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 9,
@@ -170,10 +238,27 @@ const productsMock = {
       description: "Ergonomic office chair with lumbar support",
       price: 249.99,
       category: "furniture",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/chair.jpg",
       stock: 18,
       popularity: 89,
       createdAt: "2024-02-03T13:40:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 10,
@@ -181,10 +266,27 @@ const productsMock = {
       description: "LED desk lamp with adjustable brightness",
       price: 39.99,
       category: "home",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/desk_lamp.jpg",
       stock: 70,
       popularity: 80,
       createdAt: "2024-02-05T09:25:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 11,
@@ -192,10 +294,27 @@ const productsMock = {
       description: "High-speed portable solid state drive",
       price: 169.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/SSD.jpg",
       stock: 35,
       popularity: 94,
       createdAt: "2024-02-07T15:10:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 12,
@@ -203,10 +322,27 @@ const productsMock = {
       description: "27-inch 144Hz gaming monitor",
       price: 299.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/monitor.jpg",
       stock: 22,
       popularity: 96,
       createdAt: "2024-02-10T11:55:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 13,
@@ -218,6 +354,23 @@ const productsMock = {
       stock: 2,
       popularity: 96,
       createdAt: "2024-02-10T11:55:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 14,
@@ -225,10 +378,27 @@ const productsMock = {
       description: "27-inch 144Hz gaming monitor",
       price: 299.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/monitor.jpg",
       stock: 22,
       popularity: 96,
       createdAt: "2024-02-10T11:55:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 15,
@@ -236,10 +406,27 @@ const productsMock = {
       description: "27-inch 144Hz gaming monitor",
       price: 299.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/monitor.jpg",
       stock: 22,
       popularity: 96,
       createdAt: "2024-02-10T11:55:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 16,
@@ -247,10 +434,27 @@ const productsMock = {
       description: "27-inch 144Hz gaming monitor",
       price: 299.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/monitor.jpg",
       stock: 22,
       popularity: 96,
       createdAt: "2024-02-10T11:55:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 17,
@@ -258,10 +462,27 @@ const productsMock = {
       description: "27-inch 144Hz gaming monitor",
       price: 299.99,
       category: "electronics",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/monitor.jpg",
       stock: 22,
       popularity: 96,
       createdAt: "2024-02-10T11:55:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 18,
@@ -269,10 +490,27 @@ const productsMock = {
       description: "beautiful electric vase",
       price: 39.99,
       category: "home",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/flower.jpg",
       stock: 70,
       popularity: 80,
       createdAt: "2024-02-05T09:25:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 19,
@@ -280,21 +518,55 @@ const productsMock = {
       description: "beautiful electric vase",
       price: 39.99,
       category: "home",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/flower.jpg",
       stock: 70,
       popularity: 80,
       createdAt: "2024-02-05T09:25:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 20,
-      name: "Flower vase",
+      name: "Flower vase new",
       description: "beautiful electric vase",
-      price: 39.99,
+      price: 79.99,
       category: "home",
-      image: "https://dummyimage.com/300x300/cbd5d6/fff",
+      image: "/flower.jpg",
       stock: 70,
       popularity: 80,
       createdAt: "2024-02-05T09:25:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 21,
@@ -306,17 +578,51 @@ const productsMock = {
       stock: 70,
       popularity: 80,
       createdAt: "2025-02-05T09:25:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 22,
-      name: "Flower vase",
+      name: "vase",
       description: "beautiful electric vase",
       price: 39.99,
       category: "home",
       image: "https://dummyimage.com/300x300/cbd5d6/fff",
-      stock: 70,
+      stock: 10,
       popularity: 80,
       createdAt: "2025-02-05T09:25:00Z",
+      images: [
+        "/img-wireless1.jpg",
+        "/img-wireless2.jpg",
+        "/img-wireless2.jpg",
+      ],
+      specifications: [
+        { label: "Color", value: "Calm Beige" },
+        { label: "Battery Life", value: "30 hours" },
+        { label: "Connectivity", value: "Bluetooth 5.0" },
+      ],
+
+      reviews: {
+        count: 234,
+        rating: 4.5,
+      },
+      lastStockUpdate: "2024-01-20T14:22:00Z",
+      relatedProducts: [2, 5, 8],
     },
     {
       id: 23,

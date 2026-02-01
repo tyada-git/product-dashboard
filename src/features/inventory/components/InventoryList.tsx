@@ -6,7 +6,15 @@ import { timeAgoForStock } from "../../../helper";
 import styled from "styled-components";
 import Loader from "../../../sharedComponents/Loader";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
-import Button from "../../../sharedComponents/Button";
+import { Button } from "../../../sharedComponents/Button";
+import {
+  Backdrop,
+  ButtonRow,
+  Field,
+  Modal,
+  Title,
+  TitleProduct,
+} from "../../../sharedComponents/Modal";
 
 const Table = styled.table`
   width: 100%;
@@ -69,11 +77,15 @@ export const Sidebar = styled.aside`
 const InventoryList = () => {
   const [category, setCategory] = useState("");
   const [lowStock, setLowStock] = useState(0);
+  const [reason, setReason] = useState("");
+  const [openItemId, setOpenItemId] = useState<number | null>(null);
+  const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch<AppDispatch>();
 
   const { items, loading, error } = useSelector(
     (state: RootState) => state.inventory,
   );
+  const selectedItem = items.find((i) => i.id === openItemId);
   useEffect(() => {
     dispatch(
       fetchInventory({
@@ -82,7 +94,7 @@ const InventoryList = () => {
       }),
     );
   }, [dispatch, category, lowStock]);
-  console.log(items);
+
   if (error) return <p>{error}</p>;
 
   const handleCategory = (selectedCategory: string) => {
@@ -91,80 +103,132 @@ const InventoryList = () => {
   const handleStock = (val: number) => {
     setLowStock(val);
   };
-
+  const handleSubmit = () => {};
   return (
     <>
       {loading ? (
         <Loader label="Loading products..." />
       ) : (
-        <InventoryWrapper>
-          <Sidebar>
-            <label>Category</label>
-            <SelectBox
-              value={category}
-              onChange={(e) => handleCategory(e.target.value)}
-            >
-              <option value="">Select a category</option>
-              <option value="accessories">Accessories</option>
-              <option value="electronics">Electronics</option>
-              <option value="furniture">Furniture</option>
-              <option value="home">Home</option>
-            </SelectBox>
-            <label>Stock</label>
-            <SelectBox
-              value={lowStock}
-              onChange={(e) => handleStock(Number(e.target.value))}
-            >
-              <option value={0}>All</option>
-              <option value={5}>≤ 5</option>
-              <option value={10}>≤ 10</option>
-              <option value={20}>≤ 20</option>
-            </SelectBox>
-          </Sidebar>
-          <Table>
-            <Thead>
-              <tr>
-                <Th>Name</Th>
-                <Th>Category</Th>
-                <Th>Current Stock</Th>
-                <Th>Reorder Level</Th>
-                <Th>Last Updated</Th>
-                <Th>Stock Update</Th>
-              </tr>
-            </Thead>
+        <>
+          <InventoryWrapper>
+            <Sidebar>
+              <label>Category</label>
+              <SelectBox
+                value={category}
+                onChange={(e) => handleCategory(e.target.value)}
+              >
+                <option value="">Select a category</option>
+                <option value="accessories">Accessories</option>
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <option value="home">Home</option>
+              </SelectBox>
+              <label>Stock</label>
+              <SelectBox
+                value={lowStock}
+                onChange={(e) => handleStock(Number(e.target.value))}
+              >
+                <option value={0}>All</option>
+                <option value={5}>≤ 5</option>
+                <option value={10}>≤ 10</option>
+                <option value={20}>≤ 20</option>
+              </SelectBox>
+            </Sidebar>
+            <Table>
+              <Thead>
+                <tr>
+                  <Th>Name</Th>
+                  <Th>Category</Th>
+                  <Th>Current Stock</Th>
+                  <Th>Reorder Level</Th>
+                  <Th>Last Updated</Th>
+                  <Th>Stock Update</Th>
+                </tr>
+              </Thead>
 
-            <tbody>
-              {items.map((item) => {
-                const isLow = item.currentStock <= item.reorderLevel;
+              <tbody>
+                {items.map((item) => {
+                  const isLow = item.currentStock <= item.reorderLevel;
 
-                return (
-                  <Tr key={item.id}>
-                    <Td>{item.name}</Td>
+                  return (
+                    <>
+                      <Tr key={item.id}>
+                        <Td>{item.name}</Td>
+                        <Td>
+                          <CategoryBadge>{item.category}</CategoryBadge>{" "}
+                        </Td>
+                        <Td>
+                          {isLow ? (
+                            <LowStock>{item.currentStock}</LowStock>
+                          ) : (
+                            item.currentStock
+                          )}
+                        </Td>
+                        <Td>{item.reorderLevel}</Td>
+                        <Td>{timeAgoForStock(item.lastUpdated)}</Td>
+                        <Td>
+                          <Button
+                            variant="primary"
+                            onClick={() => {
+                              setOpenItemId(item.id);
+                              setQuantity(item.currentStock);
+                            }}
+                          >
+                            Update
+                          </Button>
+                        </Td>
+                      </Tr>
+                    </>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </InventoryWrapper>
+          {selectedItem && (
+            <Backdrop onClick={() => setOpenItemId(null)}>
+              <Modal onClick={(e) => e.stopPropagation()}>
+                <TitleProduct>Product: {selectedItem.name}</TitleProduct>
+                <Title>Current Stock: {selectedItem.currentStock}</Title>
 
-                    <Td>
-                      <CategoryBadge>{item.category}</CategoryBadge>
-                    </Td>
+                <Field>
+                  <label>Update quantity</label>
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Number(e.target.value))}
+                  />
+                </Field>
 
-                    <Td>
-                      {isLow ? (
-                        <LowStock>{item.currentStock}</LowStock>
-                      ) : (
-                        item.currentStock
-                      )}
-                    </Td>
+                <Field>
+                  <label>Reason for change</label>
+                  <select
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                  >
+                    <option value="Restock from supplier">
+                      Restock from supplier
+                    </option>
+                    <option value="Damaged items">Damaged items</option>
+                    <option value="Manual adjustment">Manual adjustment</option>
+                  </select>
+                </Field>
 
-                    <Td>{item.reorderLevel}</Td>
+                <ButtonRow>
+                  <Button
+                    variant="secondary"
+                    onClick={() => setOpenItemId(null)}
+                  >
+                    Cancel
+                  </Button>
 
-                    <Td>{timeAgoForStock(item.lastUpdated)}</Td>
-                    <Td>
-                      <Button>Update</Button>
-                    </Td>
-                  </Tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </InventoryWrapper>
+                  <Button variant="primary" onClick={handleSubmit}>
+                    Update
+                  </Button>
+                </ButtonRow>
+              </Modal>
+            </Backdrop>
+          )}
+        </>
       )}
     </>
   );

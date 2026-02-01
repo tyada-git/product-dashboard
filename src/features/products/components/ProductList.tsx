@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../productsThunks";
 import type { AppDispatch, RootState } from "../../../store";
 import ProductCard from "./ProductCard";
-import Button from "../../../sharedComponents/Button";
 import ProductContainer from "./ProductContainer";
 import styled from "styled-components";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
 import Loader from "../../../sharedComponents/Loader";
+import { Button } from "../../../sharedComponents/Button";
 
 export const PageWrapper = styled.div`
   display: grid;
@@ -35,6 +35,7 @@ const ProductList = () => {
   const [sortedValue, setSortedValue] = useState("");
   const [orderVal, setOrderVal] = useState("asc");
   const [page, setPage] = useState(1);
+  const [onlyInStock, setOnlyInStock] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { items, loading, error } = useSelector(
     (state: RootState) => state.products,
@@ -49,10 +50,10 @@ const ProductList = () => {
         sort: sortedValue,
         order: orderVal,
         category: category,
-        inStock: true,
+        inStock: onlyInStock,
       }),
     );
-  }, [dispatch, category, page, sortedValue, orderVal]);
+  }, [dispatch, category, page, sortedValue, orderVal, onlyInStock]);
 
   const handleCategory = (selectedCategory: string) => {
     setCategory(selectedCategory);
@@ -81,7 +82,7 @@ const ProductList = () => {
   };
 
   if (error) return <p>{error}</p>;
-
+  console.log(onlyInStock, "-----------------");
   return (
     <>
       {loading ? (
@@ -116,7 +117,11 @@ const ProductList = () => {
             </SelectBox>
 
             <label>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={onlyInStock}
+                onChange={(e) => setOnlyInStock(e.target.checked)}
+              />
               In Stock Only
             </label>
           </Sidebar>
@@ -128,9 +133,14 @@ const ProductList = () => {
               ))}
             </ProductContainer>
             <div>
-              <Button onClick={prevPage}> prev</Button>
+              <Button variant="primary" onClick={prevPage}>
+                {" "}
+                prev
+              </Button>
               {page}
-              <Button onClick={nextPage}>next</Button>
+              <Button variant="primary" onClick={nextPage}>
+                next
+              </Button>
             </div>
           </Content>
         </PageWrapper>

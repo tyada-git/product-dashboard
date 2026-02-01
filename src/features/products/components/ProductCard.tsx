@@ -1,7 +1,8 @@
 import type { Product } from "../productsThunks";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Button from "../../../sharedComponents/Button";
+import { useNavigate } from "react-router-dom";
 
 interface CardProps {
   product: Product;
@@ -69,10 +70,7 @@ const Description = styled.p`
 `;
 
 const Card: React.FC<CardProps> = ({ product }) => {
-  const [showDescription, setShowDescription] = useState(false);
-
-  const toggleDescription = () => setShowDescription((prev) => !prev);
-
+  const navigate = useNavigate();
   return (
     <CardContainer>
       {product.image && <Image src={product.image} alt={product.name} />}
@@ -86,8 +84,8 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <Title>{product.name}</Title>
         <Price>${product.price.toFixed(2)}</Price>
         <Description></Description>
-        <Button onClick={toggleDescription}>
-          {showDescription ? "Hide Details" : "View Details"}
+        <Button onClick={() => navigate(`/products/${product.id}`)}>
+          View Details
         </Button>
       </Content>
     </CardContainer>

@@ -47,3 +47,19 @@ export const fetchProducts = createAsyncThunk<
     return rejectWithValue("something went wrong");
   }
 });
+
+export const fetchProductById = createAsyncThunk<
+  Product,
+  number,
+  { rejectValue: string }
+>("product/fetchProductById", async (id, { rejectWithValue }) => {
+  try {
+    const res = await fetch(`api/products/${id}`);
+    if (!res.ok) throw new Error("Failed to fetch product");
+    const data = await res.json();
+
+    return data;
+  } catch {
+    return rejectWithValue("something went wrong");
+  }
+});

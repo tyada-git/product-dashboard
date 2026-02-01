@@ -61,4 +61,18 @@ export const handlers = [
       }),
     );
   }),
+
+  rest.get("/api/product/:id", (req, res, ctx) => {
+    const id = Number(req.url.searchParams.get("id") ?? 1);
+
+    const selectedProduct = productsMock.data.find((p) => p.id === id);
+
+    return res(
+      ctx.status(200),
+      ctx.delay(200),
+      ctx.json({
+        selectedProduct,
+      }),
+    );
+  }),
 ];

@@ -90,7 +90,6 @@ const ProductList = () => {
   };
 
   if (error) return <p>{error}</p>;
-  console.log(onlyInStock, "-----------------");
   return (
     <>
       {loading ? (

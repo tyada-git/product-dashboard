@@ -142,6 +142,7 @@ const InventoryList = () => {
                   <Th>Reorder Level</Th>
                   <Th>Last Updated</Th>
                   <Th>Stock Update</Th>
+                  <Th>Stock History</Th>
                 </tr>
               </Thead>
 
@@ -182,6 +183,18 @@ const InventoryList = () => {
                             }}
                           >
                             Update
+                          </Button>
+                        </Td>
+                        <Td>
+                          {" "}
+                          <Button
+                            variant="secondary"
+                            onClick={() => {
+                              setOpenItemId(item.id);
+                              setQuantity(item.currentStock);
+                            }}
+                          >
+                            History
                           </Button>
                         </Td>
                       </Tr>

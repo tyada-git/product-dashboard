@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../../store";
-import { fetchInventory, updateInventoryStock } from "../inventoryThunk";
-import { timeAgoForStock } from "../../../helper";
+import {
+  fetchInventory,
+  updateInventoryStock,
+  type Inventory,
+} from "../inventoryThunk";
 import styled from "styled-components";
 import Loader from "../../../sharedComponents/Loader";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
@@ -15,6 +18,8 @@ import {
   Title,
   TitleProduct,
 } from "../../../sharedComponents/Modal";
+import ExportCsvButton from "../../../sharedComponents/ExportCsv";
+import { timeAgoForStock } from "../../../helper";
 
 const Table = styled.table`
   width: 100%;
@@ -80,6 +85,9 @@ const InventoryList = () => {
   const [reason, setReason] = useState("");
   const [openItemId, setOpenItemId] = useState<number | null>(null);
   const [quantity, setQuantity] = useState(0);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  // const [bulkOpen, setBulkOpen] = useState(false);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const { items, loading, error, updating } = useSelector(
@@ -120,6 +128,13 @@ const InventoryList = () => {
     setOpenItemId(null); // close modal
     setReason("");
   };
+  const checkedItem = (id: number) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter((x) => x != id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  };
 
   return (
     <>
@@ -150,10 +165,25 @@ const InventoryList = () => {
                 <option value={10}>≤ 10</option>
                 <option value={20}>≤ 20</option>
               </SelectBox>
+
+              <ExportCsvButton<Inventory>
+                rows={items}
+                headers={[
+                  "id",
+                  "name",
+                  "category",
+                  "currentStock",
+                  "reorderLevel",
+                  "lastUpdated",
+                ]}
+                filename="inventory.csv"
+              />
             </Sidebar>
+
             <Table>
               <Thead>
                 <tr>
+                  <Th>Select</Th>
                   <Th>Name</Th>
                   <Th>Category</Th>
                   <Th>Current Stock</Th>
@@ -170,6 +200,14 @@ const InventoryList = () => {
                   return (
                     <>
                       <Tr key={item.id}>
+                        <Td>
+                          {" "}
+                          <input
+                            type="checkbox"
+                            checked={selectedIds.includes(item.id)}
+                            onChange={() => checkedItem(item.id)}
+                          />
+                        </Td>
                         <Td>{item.name}</Td>
                         <Td>
                           <CategoryBadge>{item.category}</CategoryBadge>{" "}

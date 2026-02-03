@@ -6,7 +6,6 @@ import {
   updateInventoryStock,
   type Inventory,
 } from "../inventoryThunk";
-import styled from "styled-components";
 import Loader from "../../../sharedComponents/Loader";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
 import { Button } from "../../../sharedComponents/Button";
@@ -20,64 +19,17 @@ import {
 } from "../../../sharedComponents/Modal";
 import ExportCsvButton from "../../../sharedComponents/ExportCsv";
 import { timeAgoForStock } from "../../../helper";
-
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-`;
-
-const Thead = styled.thead`
-  background: #f1f5f9;
-`;
-
-const Th = styled.th`
-  text-align: left;
-  padding: 14px;
-  font-size: 13px;
-  color: #475569;
-  font-weight: 600;
-`;
-
-const Tr = styled.tr`
-  border-bottom: 1px solid #e5e7eb;
-
-  &:hover {
-    background: #f8fafc;
-  }
-`;
-
-const Td = styled.td`
-  padding: 14px;
-  font-size: 14px;
-`;
-
-const CategoryBadge = styled.span`
-  background: #eef2ff;
-  color: #4338ca;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 600;
-`;
-
-const LowStock = styled.span`
-  color: #dc2626;
-  font-weight: 700;
-`;
-
-const InventoryWrapper = styled.div`
-  display: flex;
-`;
-
-export const Sidebar = styled.aside`
-  background: #f8fafc;
-  padding: 20px;
-  border-radius: 8px;
-  height: fit-content;
-`;
+import {
+  CategoryBadge,
+  InventoryWrapper,
+  LowStock,
+  Sidebar,
+  Table,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "./InventoryListStyles";
 
 const InventoryList = () => {
   const [category, setCategory] = useState("");

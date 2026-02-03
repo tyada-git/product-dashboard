@@ -51,11 +51,11 @@ const Category = styled.span`
   font-size: 12px;
   margin-bottom: 15px;
 `;
-const Stock = styled.span<{ stock: boolean }>`
+const Stock = styled.span<{ $stock: boolean }>`
   display: block;
   margin-left: 8px;
-  color: ${({ stock }) => (stock ? "green" : "red")};
-  background-color: ${({ stock }) => (stock ? "#ccf6cb" : "#e9f6c6")};
+  color: ${({ $stock }) => ($stock ? "green" : "red")};
+  background-color: ${({ $stock }) => ($stock ? "#ccf6cb" : "#e9f6c6")};
   padding: 5px;
   font-weight: 500;
   font-size: 12px;
@@ -77,7 +77,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
       <Content>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Category>{product.category.toLocaleUpperCase()}</Category>
-          <Stock stock={product.stock > 0}>
+          <Stock $stock={product.stock > 0}>
             {product.stock > 0 ? "In Stock" : "Out of Stock"}
           </Stock>
         </div>

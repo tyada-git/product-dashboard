@@ -31,7 +31,7 @@ const productsMock = {
       relatedProducts: [2, 5, 8],
     },
     {
-      id: 4,
+      id: 2,
       name: "Laptop Backpack",
       description: "Durable backpack with laptop compartment",
       fullDescription:

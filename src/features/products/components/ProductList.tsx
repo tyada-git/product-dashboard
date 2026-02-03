@@ -30,6 +30,14 @@ export const Content = styled.main`
   gap: 20px;
 `;
 
+const PaginationWrapper = styled.div`
+  margin: 0 auto;
+  width: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const ProductList = () => {
   const [category, setCategory] = useState("");
   const [sortedValue, setSortedValue] = useState("");
@@ -75,10 +83,10 @@ const ProductList = () => {
     setPage(1);
   };
   const nextPage = () => {
-    setPage((prev) => prev + 1);
+    if (items.length > 0) setPage((prev) => prev + 1);
   };
   const prevPage = () => {
-    setPage((prev) => prev - 1);
+    if (page > 0) setPage((prev) => prev - 1);
   };
 
   if (error) return <p>{error}</p>;
@@ -132,16 +140,24 @@ const ProductList = () => {
                 <ProductCard key={p.id} product={p} />
               ))}
             </ProductContainer>
-            <div>
-              <Button variant="primary" onClick={prevPage}>
+            <PaginationWrapper>
+              <Button
+                variant="primary"
+                onClick={prevPage}
+                disabled={page === 1}
+              >
                 {" "}
                 prev
               </Button>
-              {page}
-              <Button variant="primary" onClick={nextPage}>
+              <span> {page}</span>
+              <Button
+                variant="primary"
+                onClick={nextPage}
+                disabled={items.length === 0}
+              >
                 next
               </Button>
-            </div>
+            </PaginationWrapper>
           </Content>
         </PageWrapper>
       )}

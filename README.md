@@ -8,10 +8,7 @@ This approach scales well for future needs like theming and dark mode without re
 
 ## For Mocking I used MSW
 
-# I chose MSW because it lets me mock APIs at the network layer (same as real backend calls), without changing frontend code.
-
-# It keeps my React + Redux code production-like: thunks still call real fetch("/api/...").
-
-# MSW makes it easy to simulate query params (pagination/sort/filter) and error/loading cases for better UX testing.
-
-# Compared to json-server, MSW is lightweight, needs no separate server process, and works well inside a frontend repo.
+I chose MSW because it lets me mock APIs at the network layer (same as real backend calls), without changing frontend code.
+It keeps my React + Redux code production-like: thunks still call real fetch("/api/...").
+MSW makes it easy to simulate query params (pagination/sort/filter) and error/loading cases for better UX testing.
+Compared to json-server, MSW is lightweight, needs no separate server process, and works well inside a frontend repo.

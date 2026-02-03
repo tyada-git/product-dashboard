@@ -97,4 +97,47 @@ export const handlers = [
       ctx.json({ data: filteredInventory }),
     );
   }),
+
+  rest.put("/api/inventory/:id", async (req, res, ctx) => {
+    const id = Number(req.params.id);
+
+    const body = (await req.json()) as { quantity: number; reason: string };
+
+    const newStock = Number(body.quantity);
+    const reason = String(body.reason ?? "Manual adjustment");
+    const timestamp = new Date().toISOString();
+
+    const invItem = inventoryMock.data.find((x) => x.id === id);
+    if (!invItem) {
+      return res(
+        ctx.status(404),
+        ctx.json({ message: "Inventory item not found" }),
+      );
+    }
+
+    const previousStock = invItem.currentStock;
+    invItem.currentStock = newStock;
+    invItem.lastUpdated = timestamp;
+
+    //update products mock to keep screens consistent
+    const prod = productsMock.data.find((p) => p.id === id);
+    if (prod) {
+      prod.stock = newStock;
+      prod.lastStockUpdate = timestamp;
+    }
+
+    return res(
+      ctx.status(200),
+      ctx.delay(200),
+      ctx.json({
+        id,
+        previousStock,
+        newStock,
+        change: newStock - previousStock,
+        reason,
+        timestamp,
+        stockHasbeenUpdated: true,
+      }),
+    );
+  }),
 ];

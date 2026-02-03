@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../../store";
-import { fetchInventory } from "../inventoryThunk";
+import { fetchInventory, updateInventoryStock } from "../inventoryThunk";
 import { timeAgoForStock } from "../../../helper";
 import styled from "styled-components";
 import Loader from "../../../sharedComponents/Loader";
@@ -82,10 +82,11 @@ const InventoryList = () => {
   const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch<AppDispatch>();
 
-  const { items, loading, error } = useSelector(
+  const { items, loading, error, updating } = useSelector(
     (state: RootState) => state.inventory,
   );
-  const selectedItem = items.find((i) => i.id === openItemId);
+  const selectedItem = items.find((i) => i.id === openItemId); // for each row we need update btn
+
   useEffect(() => {
     dispatch(
       fetchInventory({
@@ -103,7 +104,23 @@ const InventoryList = () => {
   const handleStock = (val: number) => {
     setLowStock(val);
   };
-  const handleSubmit = () => {};
+
+  const handleSubmit = async () => {
+    if (!selectedItem) return;
+    if (!reason) return;
+
+    await dispatch(
+      updateInventoryStock({
+        id: selectedItem.id,
+        quantity,
+        reason,
+      }),
+    ).unwrap();
+
+    setOpenItemId(null); // close modal
+    setReason("");
+  };
+
   return (
     <>
       {loading ? (
@@ -205,6 +222,7 @@ const InventoryList = () => {
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}
                   >
+                    <option value="">Select reason</option>
                     <option value="Restock from supplier">
                       Restock from supplier
                     </option>
@@ -222,7 +240,7 @@ const InventoryList = () => {
                   </Button>
 
                   <Button variant="primary" onClick={handleSubmit}>
-                    Update
+                    {updating ? "Updating..." : "Update"}
                   </Button>
                 </ButtonRow>
               </Modal>

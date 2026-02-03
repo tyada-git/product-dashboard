@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Page = styled.div`
   padding: 32px;
@@ -214,4 +215,32 @@ export const Image = styled.img`
   width: 100%;
   height: 356px;
   object-fit: cover;
+`;
+
+export const BackLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 16px;
+  text-decoration: none;
+
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 14px;
+
+  padding: 6px 10px;
+  border-radius: 10px;
+
+  &:hover {
+    background: #eef2ff;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+`;
+export const BackIcon = styled.span`
+  font-size: 16px;
+  line-height: 1;
 `;

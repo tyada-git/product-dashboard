@@ -31,6 +31,8 @@ import {
   PrimaryBtn,
   SecondaryBtn,
   Image,
+  BackLink,
+  BackIcon,
 } from "./ProductDetailsStyles";
 
 const ProductDetails = () => {
@@ -52,7 +54,11 @@ const ProductDetails = () => {
 
   return (
     <Page>
-      <a href="/products"> Back to Products</a>
+      <BackLink to="/products">
+        <BackIcon>←</BackIcon>
+        Back to Products
+      </BackLink>
+
       <TopGrid>
         <ImagesCol>
           <MainImage>

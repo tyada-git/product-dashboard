@@ -52,15 +52,73 @@ Bulk update API can be added as POST /api/inventory/bulk-update in MSW and handl
 
 ## For Mocking I used MSW
 
-I chose MSW because it lets me mock APIs at the network layer (same as real backend calls), without changing frontend code.
-It keeps my React + Redux code production-like: thunks still call real fetch("/api/...").
-MSW makes it easy to simulate query params (pagination/sort/filter) and error/loading cases for better UX testing.
-Compared to json-server, MSW is lightweight, needs no separate server process, and works well inside a frontend repo.
+- I chose MSW because it lets me mock APIs at the network layer (same as real backend calls), without changing frontend code.
+- It keeps my React + Redux code production-like: thunks still call real fetch("/api/...").
+- MSW makes it easy to simulate query params (pagination/sort/filter) and error/loading cases for better UX testing.
+- Compared to json-server, MSW is lightweight, needs no separate server process, and works well inside a frontend repo.
 
 ## Why I Used STYLED-COMPONENTS ( CSS-IN JS )
 
-I used styled-components (CSS-in-JS) to keep styles scoped to individual components, preventing global CSS conflicts.
-It allows dynamic styling via props, which is useful for variants like primary/secondary buttons and conditional states.
-Styled-components integrates well with TypeScript, enabling typed style props and better developer experience.
-Co-locating styles with components improves readability and maintainability for complex UI (tables, modals, forms).
-This approach scales well for future needs like theming and dark mode without restructuring CSS.
+- I used styled-components (CSS-in-JS) to keep styles scoped to individual components, preventing global CSS conflicts.
+- It allows dynamic styling via props, which is useful for variants like primary/secondary buttons and conditional states.
+- Styled-components integrates well with TypeScript, enabling typed style props and better developer experience.
+- Co-locating styles with components improves readability and maintainability for complex UI (tables, modals, forms).
+
+# Component Documentation:
+
+ProductList - Renders all products in grid format, has sidebar for searching filtering and sorting
+ProductDetails - show detailed view when we click on view detail button from product page
+
+InventoryList - shows all inventory available, has button to update individual stocks, has history button to show logs,has side bar for filtering on the basis of category and lowstock
+
+# Handler - it has MSW setup
+
+GET /api/products?page=&limit=&sort=&order=&category=&inStock=
+
+GET /api/products/:id
+
+GET /api/inventory?category=&lowStockThreshold=
+
+PUT /api/inventory/:id (updates both inventory + product stock to keep screens consistent)
+
+GET /api/inventory/:id/history (returns mock history)
+
+# Mock data lives under something like:
+
+src/mock/productData.ts
+src/mock/inventoryData.ts
+src/mock/historyMock.ts
+
+#
+
+# Product Inventory Management Dashboard
+
+## Features Implemented
+
+### Screen 1: Product Listing
+
+- Products grid layout
+- Pagination (12 per page)
+- Filters: category + in-stock
+- Sorting: price (asc/desc), popularity (asc/desc), newest
+- Real-time search by product name (client-side)
+- Loading + empty states
+  ![alt text](image.png)
+
+### Screen 2: Product Details
+
+- Full product details (description, full description, specs)
+- Main image + thumbnail gallery (Amazon-like)
+- Stock info (current stock + “last updated” time-ago)
+- Back navigation to Products
+
+### Screen 3: Inventory Management
+
+- Inventory table with:
+  - category filter
+  - low-stock threshold filter (≤ 5 / ≤ 10 / ≤ 20)
+- Update stock modal (PUT /api/inventory/:id)
+- Bulk selection (foundation for bulk update)
+- History screen (mocked API response)
+- Export CSV
+  ![alt text](image-1.png)

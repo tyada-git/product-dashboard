@@ -85,7 +85,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <Price>${product.price.toFixed(2)}</Price>
         <Description></Description>
         <Button
-          variant="primary"
+          $variant="primary"
           onClick={() => navigate(`/products/${product.id}`)}
         >
           View Details

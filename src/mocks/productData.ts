@@ -27,7 +27,7 @@ const productsMock = {
         count: 234,
         rating: 4.5,
       },
-      lastStockUpdate: "2024-01-20T14:22:00Z",
+      lastStockUpdate: "2026-02-03T14:22:00Z",
       relatedProducts: [2, 5, 8],
     },
     {

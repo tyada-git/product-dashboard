@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 import { fetchHistoryById } from "../inventoryThunk";
 import type { AppDispatch, RootState } from "../../../store";
 import { timeAgoForStock } from "../../../helper";
-
+import {
+  BackIcon,
+  BackLink,
+} from "../../products/components/ProductDetailsStyles";
 const ShowHistoryLogs = () => {
   const { id } = useParams(); // route like /inventory/:id/history
   const dispatch = useDispatch<AppDispatch>();
@@ -23,6 +26,10 @@ const ShowHistoryLogs = () => {
 
   return (
     <div>
+      <BackLink to="/inventory">
+        <BackIcon>←</BackIcon>
+        Back to Inventory
+      </BackLink>
       <h3>Stock History</h3>
       <ul>
         {history.map((h) => (

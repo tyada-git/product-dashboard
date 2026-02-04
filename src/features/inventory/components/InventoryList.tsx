@@ -154,53 +154,51 @@ const InventoryList = () => {
                   const isLow = item.currentStock <= item.reorderLevel;
 
                   return (
-                    <>
-                      <Tr key={item.id}>
-                        <Td>
-                          {" "}
-                          <input
-                            type="checkbox"
-                            checked={selectedIds.includes(item.id)}
-                            onChange={() => checkedItem(item.id)}
-                          />
-                        </Td>
-                        <Td>{item.name}</Td>
-                        <Td>
-                          <CategoryBadge>{item.category}</CategoryBadge>{" "}
-                        </Td>
-                        <Td>
-                          {isLow ? (
-                            <LowStock>{item.currentStock}</LowStock>
-                          ) : (
-                            item.currentStock
-                          )}
-                        </Td>
-                        <Td>{item.reorderLevel}</Td>
-                        <Td>{timeAgoForStock(item.lastUpdated)}</Td>
-                        <Td>
-                          <Button
-                            variant="primary"
-                            onClick={() => {
-                              setOpenItemId(item.id);
-                              setQuantity(item.currentStock);
-                            }}
-                          >
-                            Update
-                          </Button>
-                        </Td>
-                        <Td>
-                          {" "}
-                          <Button
-                            variant="secondary"
-                            onClick={() =>
-                              navigate(`/inventory/${item.id}/history`)
-                            }
-                          >
-                            History
-                          </Button>
-                        </Td>
-                      </Tr>
-                    </>
+                    <Tr key={item.id}>
+                      <Td>
+                        {" "}
+                        <input
+                          type="checkbox"
+                          checked={selectedIds.includes(item.id)}
+                          onChange={() => checkedItem(item.id)}
+                        />
+                      </Td>
+                      <Td>{item.name}</Td>
+                      <Td>
+                        <CategoryBadge>{item.category}</CategoryBadge>{" "}
+                      </Td>
+                      <Td>
+                        {isLow ? (
+                          <LowStock>{item.currentStock}</LowStock>
+                        ) : (
+                          item.currentStock
+                        )}
+                      </Td>
+                      <Td>{item.reorderLevel}</Td>
+                      <Td>{timeAgoForStock(item.lastUpdated)}</Td>
+                      <Td>
+                        <Button
+                          $variant="primary"
+                          onClick={() => {
+                            setOpenItemId(item.id);
+                            setQuantity(item.currentStock);
+                          }}
+                        >
+                          Update
+                        </Button>
+                      </Td>
+                      <Td>
+                        {" "}
+                        <Button
+                          $variant="secondary"
+                          onClick={() =>
+                            navigate(`/inventory/${item.id}/history`)
+                          }
+                        >
+                          History
+                        </Button>
+                      </Td>
+                    </Tr>
                   );
                 })}
               </tbody>
@@ -238,13 +236,13 @@ const InventoryList = () => {
 
                 <ButtonRow>
                   <Button
-                    variant="secondary"
+                    $variant="secondary"
                     onClick={() => setOpenItemId(null)}
                   >
                     Cancel
                   </Button>
 
-                  <Button variant="primary" onClick={handleSubmit}>
+                  <Button $variant="primary" onClick={handleSubmit}>
                     {updating ? "Updating..." : "Update"}
                   </Button>
                 </ButtonRow>

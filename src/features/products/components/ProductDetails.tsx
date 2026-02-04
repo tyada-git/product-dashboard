@@ -69,10 +69,10 @@ const ProductDetails = () => {
           </MainImage>
 
           <ThumbsRow>
-            <Thumb active />
+            <Thumb $active />
             <Thumb />
             <Thumb />
-            <Thumb add>+</Thumb>
+            <Thumb $add>+</Thumb>
           </ThumbsRow>
         </ImagesCol>
 
@@ -113,7 +113,7 @@ const ProductDetails = () => {
           </StockCard>
 
           <Actions>
-            <Button variant="primary">Add to Cart</Button>
+            <Button $variant="primary">Add to Cart</Button>
             <Button onClick={() => navigate(`/inventory`)}>
               View Inventory
             </Button>

@@ -41,19 +41,19 @@ export const ThumbsRow = styled.div`
   gap: 12px;
 `;
 
-export const Thumb = styled.button<{ active?: boolean; add?: boolean }>`
+export const Thumb = styled.button<{ $active?: boolean; $add?: boolean }>`
   width: 70px;
   height: 70px;
   border-radius: 6px;
   cursor: pointer;
 
-  border: ${({ active, add }) =>
-    active || add ? "2px solid #2563eb" : "1px solid #e2e8f0"};
+  border: ${({ $active, $add }) =>
+    $active || $add ? "2px solid #2563eb" : "1px solid #e2e8f0"};
 
   background: #f4f6f8;
-  color: ${({ add }) => (add ? "#2563eb" : "#94a3b8")};
+  color: ${({ $add }) => ($add ? "#2563eb" : "#94a3b8")};
 
-  font-size: ${({ add }) => (add ? "22px" : "0")};
+  font-size: ${({ $add }) => ($add ? "22px" : "0")};
 
   display: flex;
   align-items: center;

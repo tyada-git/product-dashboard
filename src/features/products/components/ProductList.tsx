@@ -190,7 +190,7 @@ const ProductList = () => {
                 </ProductContainer>
                 <PaginationWrapper>
                   <Button
-                    variant="primary"
+                    $variant="primary"
                     onClick={prevPage}
                     disabled={page === 1}
                   >
@@ -199,7 +199,7 @@ const ProductList = () => {
                   </Button>
                   <span> {page}</span>
                   <Button
-                    variant="primary"
+                    $variant="primary"
                     onClick={nextPage}
                     disabled={items.length === 0}
                   >

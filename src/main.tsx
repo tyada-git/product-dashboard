@@ -9,7 +9,9 @@ import { BrowserRouter } from "react-router-dom";
 
 // Start MSW in dev mode
 if (import.meta.env.MODE === "development") {
-  worker.start();
+  worker.start({
+    onUnhandledRequest: "bypass",
+  });
 }
 
 createRoot(document.getElementById("root")!).render(

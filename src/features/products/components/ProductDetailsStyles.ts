@@ -183,34 +183,6 @@ export const Actions = styled.div`
   }
 `;
 
-export const PrimaryBtn = styled.button`
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-
-  &:hover {
-    background: #1d4ed8;
-  }
-`;
-
-export const SecondaryBtn = styled.button`
-  background: #eef2ff;
-  color: #2563eb;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-
-  &:hover {
-    background: #e0e7ff;
-  }
-`;
-
 export const Image = styled.img`
   width: 100%;
   height: 356px;

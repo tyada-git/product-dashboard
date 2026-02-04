@@ -71,3 +71,28 @@ export const updateInventoryStock = createAsyncThunk<
     }
   },
 );
+
+export interface HistoryStock {
+  id: string;
+  productId: number;
+  previousStock: number;
+  newStock: number;
+  change: number;
+  reason: string;
+  timestamp: string;
+}
+
+export const fetchHistoryById = createAsyncThunk<
+  { data: HistoryStock[] },
+  number,
+  { rejectValue: string }
+>("inventory/fetchHistoryById", async (id, { rejectWithValue }) => {
+  try {
+    const res = await fetch(`/api/inventory/${id}/history`);
+    if (!res.ok) throw new Error("Failed to fetch history");
+    const data = await res.json();
+    return data; // { data: [...] }
+  } catch {
+    return rejectWithValue("something went wrong");
+  }
+});

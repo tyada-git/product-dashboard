@@ -98,7 +98,6 @@ export default function Header() {
       </Left>
 
       <Center>
-        <NavItem to="/dashboard">Dashboard</NavItem>
         <NavItem to="/products">Products</NavItem>
         <NavItem to="/inventory">Inventory</NavItem>
       </Center>

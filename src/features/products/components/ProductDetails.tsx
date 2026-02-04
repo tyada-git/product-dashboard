@@ -28,12 +28,11 @@ import {
   StockNumber,
   StockText,
   Actions,
-  PrimaryBtn,
-  SecondaryBtn,
   Image,
   BackLink,
   BackIcon,
 } from "./ProductDetailsStyles";
+import { Button } from "../../../sharedComponents/Button";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -114,10 +113,10 @@ const ProductDetails = () => {
           </StockCard>
 
           <Actions>
-            <PrimaryBtn>Add to Cart</PrimaryBtn>
-            <SecondaryBtn onClick={() => navigate(`/inventory`)}>
+            <Button variant="primary">Add to Cart</Button>
+            <Button onClick={() => navigate(`/inventory`)}>
               View Inventory
-            </SecondaryBtn>
+            </Button>
           </Actions>
         </InfoCol>
       </TopGrid>

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
 import Loader from "../../../sharedComponents/Loader";
 import { Button } from "../../../sharedComponents/Button";
+import ProductNotFound from "./ProductNotFound";
 
 export const PageWrapper = styled.div`
   display: grid;
@@ -37,6 +38,37 @@ const PaginationWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+const FieldGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+`;
+
+const Label = styled.label`
+  font-size: 12px;
+  color: #475569;
+  font-weight: 600;
+`;
+
+const SearchInput = styled.input`
+  width: 200px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  font-size: 14px;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+
+  &:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  }
+`;
 
 const ProductList = () => {
   const [category, setCategory] = useState("");
@@ -44,13 +76,13 @@ const ProductList = () => {
   const [orderVal, setOrderVal] = useState("asc");
   const [page, setPage] = useState(1);
   const [onlyInStock, setOnlyInStock] = useState(false);
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const { items, loading, error } = useSelector(
     (state: RootState) => state.products,
   );
 
   useEffect(() => {
-    // dispatch(fetchProducts());
     dispatch(
       fetchProducts({
         page: page,
@@ -89,6 +121,11 @@ const ProductList = () => {
     if (page > 0) setPage((prev) => prev - 1);
   };
 
+  const query = search.trim().toLowerCase();
+  const filteredItems = query
+    ? items.filter((p) => p.name.toLowerCase().includes(query))
+    : items;
+
   if (error) return <p>{error}</p>;
   return (
     <>
@@ -97,9 +134,16 @@ const ProductList = () => {
       ) : (
         <PageWrapper>
           <Sidebar>
-            {/* <input placeholder="Search product..." /> */}
-            <div>
-              <label>Category</label>
+            <FieldGroup>
+              <Label>Search</Label>
+              <SearchInput
+                placeholder="Search product name..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </FieldGroup>
+            <FieldGroup>
+              <Label>Category</Label>
               <SelectBox
                 value={category}
                 onChange={(e) => handleCategory(e.target.value)}
@@ -110,19 +154,20 @@ const ProductList = () => {
                 <option value="furniture">Furniture</option>
                 <option value="home">Home</option>
               </SelectBox>
-            </div>
-            <label>Sort By</label>
-            <SelectBox
-              value={sortedValue}
-              onChange={(e) => handleSort(e.target.value)}
-            >
-              <option value="newest">Newest</option>
-              <option value="price_asc">Price: Low to High</option>
-              <option value="price_desc">Price: High to Low </option>
-              <option value="popularity_asc">Popularity Low to High</option>
-              <option value="popularity_desc">Popularity High to Low</option>
-            </SelectBox>
-
+            </FieldGroup>
+            <FieldGroup>
+              <Label>Sort By</Label>
+              <SelectBox
+                value={sortedValue}
+                onChange={(e) => handleSort(e.target.value)}
+              >
+                <option value="newest">Newest</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low </option>
+                <option value="popularity_asc">Popularity Low to High</option>
+                <option value="popularity_desc">Popularity High to Low</option>
+              </SelectBox>
+            </FieldGroup>
             <label>
               <input
                 type="checkbox"
@@ -134,29 +179,35 @@ const ProductList = () => {
           </Sidebar>
 
           <Content>
-            <ProductContainer>
-              {items.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </ProductContainer>
-            <PaginationWrapper>
-              <Button
-                variant="primary"
-                onClick={prevPage}
-                disabled={page === 1}
-              >
-                {" "}
-                prev
-              </Button>
-              <span> {page}</span>
-              <Button
-                variant="primary"
-                onClick={nextPage}
-                disabled={items.length === 0}
-              >
-                next
-              </Button>
-            </PaginationWrapper>
+            {filteredItems.length === 0 ? (
+              <ProductNotFound />
+            ) : (
+              <>
+                <ProductContainer>
+                  {filteredItems.map((p) => (
+                    <ProductCard key={p.id} product={p} />
+                  ))}
+                </ProductContainer>
+                <PaginationWrapper>
+                  <Button
+                    variant="primary"
+                    onClick={prevPage}
+                    disabled={page === 1}
+                  >
+                    {" "}
+                    prev
+                  </Button>
+                  <span> {page}</span>
+                  <Button
+                    variant="primary"
+                    onClick={nextPage}
+                    disabled={items.length === 0}
+                  >
+                    next
+                  </Button>
+                </PaginationWrapper>
+              </>
+            )}
           </Content>
         </PageWrapper>
       )}

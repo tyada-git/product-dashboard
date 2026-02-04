@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import productsMock from "./productData";
 import inventoryMock from "./inventoryData";
+import { historyMock } from "./historyMock";
 
 export const handlers = [
   rest.get("/api/products", (req, res, ctx) => {
@@ -139,5 +140,11 @@ export const handlers = [
         stockHasbeenUpdated: true,
       }),
     );
+  }),
+
+  rest.get("/api/inventory/:id/history", (req, res, ctx) => {
+    const id = Number(req.params.id);
+    const filtered = historyMock.data.filter((x) => x.productId === id);
+    return res(ctx.status(200), ctx.delay(200), ctx.json({ data: filtered }));
   }),
 ];

@@ -30,6 +30,7 @@ import {
   Thead,
   Tr,
 } from "./InventoryListStyles";
+import { useNavigate } from "react-router-dom";
 
 const InventoryList = () => {
   const [category, setCategory] = useState("");
@@ -38,9 +39,9 @@ const InventoryList = () => {
   const [openItemId, setOpenItemId] = useState<number | null>(null);
   const [quantity, setQuantity] = useState(0);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  // const [bulkOpen, setBulkOpen] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const { items, loading, error, updating } = useSelector(
     (state: RootState) => state.inventory,
@@ -80,6 +81,8 @@ const InventoryList = () => {
     setOpenItemId(null); // close modal
     setReason("");
   };
+
+  // selecting and deselecting checkbox for update
   const checkedItem = (id: number) => {
     if (selectedIds.includes(id)) {
       setSelectedIds(selectedIds.filter((x) => x != id));
@@ -189,10 +192,9 @@ const InventoryList = () => {
                           {" "}
                           <Button
                             variant="secondary"
-                            onClick={() => {
-                              setOpenItemId(item.id);
-                              setQuantity(item.currentStock);
-                            }}
+                            onClick={() =>
+                              navigate(`/inventory/${item.id}/history`)
+                            }
                           >
                             History
                           </Button>

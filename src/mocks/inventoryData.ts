@@ -9,7 +9,7 @@ const inventoryMock = {
       lastUpdated: "2025-11-20T14:22:00Z",
     },
     {
-      id: 4,
+      id: 2,
       name: "Laptop Backpack",
       category: "accessories",
       currentStock: 120,

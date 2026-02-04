@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  fetchHistoryById,
   fetchInventory,
   updateInventoryStock,
+  type HistoryStock,
   type Inventory,
 } from "./inventoryThunk";
 
@@ -12,6 +14,10 @@ interface InventoryState {
 
   updating: boolean;
   updateError: string | null;
+
+  history: HistoryStock[];
+  historyLoading: boolean;
+  historyError: string | null;
 }
 
 const initialState: InventoryState = {
@@ -21,6 +27,10 @@ const initialState: InventoryState = {
 
   updating: false,
   updateError: null,
+
+  history: [],
+  historyLoading: false,
+  historyError: null,
 };
 
 const inventorySlice = createSlice({
@@ -59,6 +69,18 @@ const inventorySlice = createSlice({
       .addCase(updateInventoryStock.rejected, (state, action) => {
         state.updating = false;
         state.updateError = action.payload ?? "unknown error";
+      })
+      .addCase(fetchHistoryById.pending, (state) => {
+        state.historyLoading = true;
+        state.historyError = null;
+      })
+      .addCase(fetchHistoryById.fulfilled, (state, action) => {
+        state.historyLoading = false;
+        state.history = action.payload.data;
+      })
+      .addCase(fetchHistoryById.rejected, (state, action) => {
+        state.historyLoading = false;
+        state.historyError = action.payload ?? "unknown error";
       });
   },
 });

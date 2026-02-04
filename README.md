@@ -85,9 +85,9 @@ GET /api/inventory/:id/history (returns mock history)
 
 # Mock data lives under something like:
 
-src/mock/productData.ts
-src/mock/inventoryData.ts
-src/mock/historyMock.ts
+- src/mock/productData.ts
+- src/mock/inventoryData.ts
+- src/mock/historyMock.ts
 
 #
 

@@ -32,7 +32,7 @@ function ExportCsvButton<T extends Record<string, CSVPrimitive> | object>({
   };
 
   return (
-    <Button variant="primary" onClick={handleClick} disabled={isDisabled}>
+    <Button $variant="primary" onClick={handleClick} disabled={isDisabled}>
       <Icon>⬇️</Icon>
       {label}
     </Button>

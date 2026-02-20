@@ -120,7 +120,7 @@ const ProductList = () => {
   const [onlyInStock, setOnlyInStock] = useState(false);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch<AppDispatch>();
-  const { items, loading, error } = useSelector(
+  const { items, loading, error, total, limit } = useSelector(
     (state: RootState) => state.products,
   );
 
@@ -234,7 +234,7 @@ const ProductList = () => {
                   <Button
                     $variant="primary"
                     onClick={prevPage}
-                    disabled={page === 1}
+                    disabled={page <= 1}
                   >
                     {" "}
                     prev
@@ -243,7 +243,7 @@ const ProductList = () => {
                   <Button
                     $variant="primary"
                     onClick={nextPage}
-                    disabled={items.length === 0}
+                    disabled={page * limit >= total}
                   >
                     next
                   </Button>

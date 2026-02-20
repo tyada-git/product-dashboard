@@ -18,5 +18,14 @@ export const historyMock = {
       reason: "Restock from supplier",
       timestamp: "2026-01-20T14:22:00Z",
     },
+    {
+      id: "log_129",
+      productId: 3,
+      previousStock: 20,
+      newStock: 45,
+      change: 25,
+      reason: "Restock from supplier",
+      timestamp: "2026-02-20T14:22:00Z",
+    },
   ],
 };

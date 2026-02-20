@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 export const Page = styled.div`
   padding: 32px;
   background: #fafafa;
+  @media (max-width: 900px) {
+    padding: 16px;
+  }
 `;
 
 export const TopGrid = styled.div`
@@ -11,8 +14,14 @@ export const TopGrid = styled.div`
   grid-template-columns: 420px 1fr;
   gap: 40px;
 
+  @media (max-width: 1100px) {
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+  }
+
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 `;
 
@@ -34,6 +43,10 @@ export const MainImage = styled.div`
 
   color: #94a3b8;
   font-weight: 600;
+
+  @media (max-width: 900px) {
+    height: 280px;
+  }
 `;
 
 export const ThumbsRow = styled.div`
@@ -127,6 +140,10 @@ export const SpecsGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 18px 40px;
 
+  @media (max-width: 900px) {
+    gap: 14px 20px;
+  }
+
   @media (max-width: 520px) {
     grid-template-columns: 1fr;
   }
@@ -153,11 +170,11 @@ export const StockCard = styled.div`
   background: white;
   border-radius: 10px;
   padding: 8px;
-  width: 640px;
+  max-width: 640px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 
   @media (max-width: 900px) {
-    width: 100%;
+    max-width: 100%;
   }
 `;
 

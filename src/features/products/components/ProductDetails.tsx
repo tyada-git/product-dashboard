@@ -39,7 +39,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { selectedProduct, loading, error } = useSelector(
+  const { selectedProduct, detailsLoading, detailsError } = useSelector(
     (state: RootState) => state.products,
   );
 
@@ -47,8 +47,8 @@ const ProductDetails = () => {
     if (id) dispatch(fetchProductById(Number(id)));
   }, [id, dispatch]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (detailsLoading) return <p>Loading...</p>;
+  if (detailsError) return <p>{detailsError}</p>;
   if (!selectedProduct) return <p>No product found</p>;
 
   return (

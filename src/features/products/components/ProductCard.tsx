@@ -9,7 +9,7 @@ interface CardProps {
 }
 
 const CardContainer = styled.div`
-  width: 300px;
+  width: 100%;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -29,6 +29,9 @@ const Image = styled.img`
   width: 100%;
   height: 280px;
   object-fit: cover;
+  @media (max-width: 520px) {
+    height: 220px;
+  }
 `;
 
 const Content = styled.div`
@@ -52,15 +55,17 @@ const Category = styled.span`
   margin-bottom: 15px;
 `;
 const Stock = styled.span<{ $stock: boolean }>`
-  display: block;
-  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+
   color: ${({ $stock }) => ($stock ? "green" : "red")};
   background-color: ${({ $stock }) => ($stock ? "#ccf6cb" : "#e9f6c6")};
-  padding: 5px;
-  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 999px;
+
+  font-weight: 600;
   font-size: 12px;
-  margin-bottom: 15px;
-  float: right;
 `;
 
 const Description = styled.p`

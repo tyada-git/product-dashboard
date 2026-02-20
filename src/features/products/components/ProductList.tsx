@@ -16,6 +16,19 @@ export const PageWrapper = styled.div`
   gap: 24px;
   padding: 24px;
   background: #f8fafc;
+  align-items: start;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
 `;
 
 export const Sidebar = styled.aside`
@@ -23,12 +36,23 @@ export const Sidebar = styled.aside`
   padding: 20px;
   border-radius: 8px;
   height: fit-content;
+  @media (min-width: 901px) {
+    position: sticky;
+    top: 16px;
+  }
+
+  @media (max-width: 900px) {
+    padding: 16px;
+  }
 `;
 
 export const Content = styled.main`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (max-width: 900px) {
+    gap: 14px;
+  }
 `;
 
 const PaginationWrapper = styled.div`
@@ -37,6 +61,11 @@ const PaginationWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 420px) {
+    width: 100%;
+    max-width: 280px;
+  }
 `;
 const FieldGroup = styled.div`
   display: flex;
@@ -53,12 +82,25 @@ const Label = styled.label`
 
 const SearchInput = styled.input`
   width: 200px;
+  max-width: 100%;
   padding: 10px 12px;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
   outline: none;
   background: #fff;
   font-size: 14px;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+
+  &:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  }
+  @media (max-width: 900px) {
+    width: 200px;
+  }
 
   &::placeholder {
     color: #94a3b8;

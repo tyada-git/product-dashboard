@@ -6,6 +6,7 @@ import { store } from "./store.ts";
 import { worker } from "./mocks/browser";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "../src/ThemeProvider.tsx";
 
 // Start MSW in dev mode
 if (import.meta.env.MODE === "development") {
@@ -18,7 +19,9 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   </StrictMode>,

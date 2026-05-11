@@ -1,3 +1,11 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+.theme-toggle-dark {
+  background-color: #333;
+  color: #fff;
+}
+.theme-toggle-light {
+  background-color: #fff;
+  color: #333;
+}

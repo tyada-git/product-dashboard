@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../productsThunks";
 import type { AppDispatch, RootState } from "../../../store";
 import ProductCard from "./ProductCard";
 import ProductContainer from "./ProductContainer";
+import { ThemeContext } from "../../../ThemeProvider";
 import styled from "styled-components";
 import { SelectBox } from "../../../sharedComponents/SelectBox";
 import Loader from "../../../sharedComponents/Loader";
@@ -124,6 +125,7 @@ const ProductList = () => {
     (state: RootState) => state.products,
   );
 
+  const { theme, toggleTheme } = useContext(ThemeContext)!;
   useEffect(() => {
     dispatch(
       fetchProducts({
@@ -169,8 +171,13 @@ const ProductList = () => {
     : items;
 
   if (error) return <p>{error}</p>;
+
   return (
     <>
+      <div className={`theme-toggle-${theme}`}>
+        {" "}
+        <Button onClick={toggleTheme}>toggle theme</Button>
+      </div>
       {loading ? (
         <Loader label="Loading products..." />
       ) : (

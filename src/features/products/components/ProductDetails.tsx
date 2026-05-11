@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../../store";
@@ -33,12 +33,14 @@ import {
   BackIcon,
 } from "./ProductDetailsStyles";
 import { Button } from "../../../sharedComponents/Button";
+import { ThemeContext } from "../../../ThemeProvider";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-
+  const themeContext = useContext(ThemeContext);
+  const theme = themeContext?.theme ?? "light";
   const { selectedProduct, detailsLoading, detailsError } = useSelector(
     (state: RootState) => state.products,
   );
@@ -60,14 +62,15 @@ const ProductDetails = () => {
 
       <TopGrid>
         <ImagesCol>
-          <MainImage>
-            {selectedProduct.image ? (
-              <Image src={selectedProduct.image} alt={selectedProduct.name} />
-            ) : (
-              "No Image"
-            )}
-          </MainImage>
-
+          <div className={`theme-toggle-${theme}`}>
+            <MainImage>
+              {selectedProduct.image ? (
+                <Image src={selectedProduct.image} alt={selectedProduct.name} />
+              ) : (
+                "No Image"
+              )}
+            </MainImage>
+          </div>
           <ThumbsRow>
             <Thumb $active />
             <Thumb />

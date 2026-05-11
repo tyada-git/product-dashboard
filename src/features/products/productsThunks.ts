@@ -59,6 +59,18 @@ export const fetchProducts = createAsyncThunk<
   }
 });
 
+// export const fetchProduct1 = createApi({
+
+//   query :
+//   baseurl :
+//   prepareheaders:
+
+//   endpoint:
+//   url:
+//   method:
+//   headers:
+// })
+
 export const fetchProductById = createAsyncThunk<
   Product,
   number,
